@@ -1,0 +1,44 @@
+> Database 
+docker run -d --name mariadb-server \
+    -e MYSQL_ROOT_PASSWORD=SecPwd123 \
+    -e MYSQL_DATABASE=mysql \
+    -e MYSQL_USER=root \
+    -e MYSQL_PASSWORD=SecPwd123 \
+    -v /opt/shared/mariadb:/var/lib/mysql \
+    -p 3306:3306 \
+    --network kong-net \
+    mariadb:latest \
+    --log-bin=mysql-bin \
+    --log-bin-trust-function-creators=true \
+    --character-set-server=utf8mb4 \
+    --collation-server=utf8mb4_unicode_ci \
+    --bind-address=0.0.0.0
+
+CREATE DATABASE thestore;
+mysql -h 127.0.0.1 -P 3306 -u root SecPwd123;
+mariadb -uroot -pSecPwd123;
+
+
+> create tsconfig.js
+npx tsc --init
+npm install express express-graphql graphql express-graphql mysql
+npm install --save-dev typescript ts-node dotenv knex 
+npm install --save-dev @types/node @types/express @types/graphql @types/knex @types/express-graphql
+
+
+> Why not ts-node in production?
+Performance: Transpiling TypeScript to JavaScript on-the-fly introduces some performance overhead. 
+In a production environment, where performance is critical, it's better to pre-compile your TypeScript 
+code with tsc and run the resulting JavaScript files.
+
+In production, it's a best practice to compile your TypeScript code to JavaScript using the TypeScript compiler (tsc) 
+and then run the JavaScript files with Node.js. This approach ensures better performance, type safety, 
+and a more secure and stable production environment.
+
+> When and why use lib in dev or dependancies? how about knex should not should not in production dependancies?
+
+
+> Export ENV 
+export NODE_ENV="development" or export NODE_ENV="production"
+
+unset NODE_ENV
