@@ -1,34 +1,30 @@
 import * as path from 'path';
-import Config from '../core/config';
+import config from '../core/config';
 
 const baseConfig = {
     client: 'mysql',
     connection: {
-        host: Config.DB_HOST,
-        port: parseInt(Config.DB_PORT),
-        user: Config.DB_USER,
-        password: Config.DB_PASSWORD,
-        database: Config.DB_NAME,
+        host: config.DB_HOST,
+        port: parseInt(config.DB_PORT),
+        user: config.DB_USER,
+        password: config.DB_PASSWORD,
+        database: config.DB_NAME,
+        timezone : 'UTC'
+    },
+    migrations: {
+        tableName: config.MIGRATION_TABLE,
+        directory: path.join(__dirname, 'migrations'),
+    },
+    seeds: {
+        directory: path.join(__dirname, 'seeds'),
     },
 }
 
 export default {
     development: {
-        ...baseConfig,
-        migrations: {
-            directory: path.join(__dirname, 'migrations'),
-        },
-        seeds: {
-            directory: path.join(__dirname, 'seeds'),
-        },
+        ...baseConfig
     },
     production : {
-        ...baseConfig,
-        migrations: {
-            directory: './build/db/migrations',
-        },
-        seeds: {
-            directory: './build/db/seeds',
-        },
+        ...baseConfig
     }
 };

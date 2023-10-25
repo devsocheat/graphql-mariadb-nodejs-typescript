@@ -21,9 +21,21 @@ mariadb -uroot -pSecPwd123;
 
 > create tsconfig.js
 npx tsc --init
-npm install express express-graphql graphql express-graphql mysql
+
+#Method 1
+npm install express-graphql 
+npm install @types/express-graphql --save-dev
+
+#Method 2 -> Latest
+npm install apollo-server-express 
+npm install @types/apollo-server-express --save-dev
+npm install @graphql-tools/merge --save-dev
+
+
+npm install express graphql mysql
 npm install --save-dev typescript ts-node dotenv knex 
-npm install --save-dev @types/node @types/express @types/graphql @types/knex @types/express-graphql
+npm install --save-dev @types/node @types/express @types/graphql @types/knex 
+npm install nodemon --save-dev
 
 
 > Why not ts-node in production?

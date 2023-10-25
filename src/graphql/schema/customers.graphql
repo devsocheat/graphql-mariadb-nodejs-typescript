@@ -1,0 +1,9 @@
+type Customer {
+    id: Int!
+    name: String!
+    phone: String!
+    createdDt: Date!
+    createdBy : String!
+    updatedDt: Date
+    updatedBy : String
+}

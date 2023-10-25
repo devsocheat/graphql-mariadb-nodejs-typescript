@@ -3,34 +3,39 @@
   "version": "1.0.0",
   "description": "",
   "main": "build/app.js",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
+    "gen": "ts-node bin/genTypeDefs.ts",
     "build": "tsc",
-    "dev": "ts-node src/app.ts",
+    "dev": "nodemon",
     "start": "node build/app.js",
-    "migrate:make": "knex --knexfile ./src/db/knexfile.ts migrate:make",
-    "migrate:latest": "knex --knexfile ./src/db/knexfile.ts migrate:latest",
-    "migrate:rollback": "knex --knexfile ./src/db/knexfile.ts migrate:rollback",
-    "prod:migrate:make": "knex --knexfile ./build/db/knexfile.js migrate:make",
-    "prod:migrate:latest": "knex --knexfile ./build/db/knexfile.js migrate:latest",
-    "prod:migrate:rollback": "knex --knexfile ./build/db/knexfile.js migrate:rollback"
+    "migrate:make": "NODE_ENV=development knex --knexfile ./src/db/knexfile.ts migrate:make",
+    "migrate:latest": "NODE_ENV=development knex --knexfile ./src/db/knexfile.ts migrate:latest",
+    "migrate:rollback": "NODE_ENV=development knex --knexfile ./src/db/knexfile.ts migrate:rollback",
+    "prod:migrate:make": "NODE_ENV=production knex --knexfile ./build/db/knexfile.js migrate:make",
+    "prod:migrate:latest": "NODE_ENV=production knex --knexfile ./build/db/knexfile.js migrate:latest",
+    "prod:migrate:rollback": "NODE_ENV=production knex --knexfile ./build/db/knexfile.js migrate:rollback"
   },
   "keywords": [],
   "author": "Socheat CHEA",
   "license": "ISC",
   "dependencies": {
+    "apollo-server-express": "^3.12.1",
     "express": "^4.18.2",
-    "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
+    "@graphql-tools/merge": "^9.0.0",
     "@types/express": "^4.17.20",
-    "@types/express-graphql": "^0.9.0",
     "@types/graphql": "^14.5.0",
     "@types/knex": "^0.16.1",
     "@types/node": "^20.8.7",
     "dotenv": "^16.3.1",
     "knex": "^3.0.1",
+    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

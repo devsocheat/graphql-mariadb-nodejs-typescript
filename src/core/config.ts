@@ -8,4 +8,5 @@ export default {
     DB_USER: getOsEnv("DB_USER"),
     DB_PASSWORD: getOsEnv("DB_PASSWORD"),
     DB_NAME: getOsEnv("DB_NAME"),
+    MIGRATION_TABLE : "migrations"
 }

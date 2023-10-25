@@ -1,0 +1,10 @@
+type Purchase {
+  id: Int!
+  customer_id: Int!
+  order_date: String!
+  status: String!
+  createdBy: String!
+  updatedBy: String
+  createdDt: String
+  updatedDt: String
+}
