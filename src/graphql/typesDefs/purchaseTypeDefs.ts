@@ -5,20 +5,21 @@ const purchaseTypeDefs = gql`
     scalar Date
     
     ${graphReader("purchases.graphql")}
+    ${graphReader("purchaseItems.graphql")}
 
-    input CreatePurchaseArgs {
+    input PurchaseItemArgs {
+        product_id: Int!
+        quantity: Int!
+        price_at_purchase: Float!
+        createdBy: String!
+    }
+
+    input MakePurchaseArgs {
         customer_id: Int!
         order_date: String!
         status: String!
         createdBy: String!
-    }
-
-    input UpdatePurchaseArgs {
-        id: Int!
-        customer_id: Int!
-        order_date: String!
-        status: String!
-        updatedBy : String!
+        items : [PurchaseItemArgs]!
     }
 
     type Query {
@@ -27,9 +28,7 @@ const purchaseTypeDefs = gql`
     }
 
     type Mutation {
-        createPurchase(input : CreatePurchaseArgs): Purchase
-        updatePurchase(input : UpdatePurchaseArgs): Purchase
-        deletePurchase(id: Int!): Boolean
+        makePurchase(input : MakePurchaseArgs): Purchase
     }
 `;
 

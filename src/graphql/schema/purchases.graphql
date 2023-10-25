@@ -7,4 +7,5 @@ type Purchase {
   updatedBy: String
   createdDt: String
   updatedDt: String
+  items: [PurchaseItem!]  
 }

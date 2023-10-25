@@ -1,0 +1,9 @@
+type PurchaseItem {
+  id: Int
+  purchase_id: Int!
+  product_id: Int!
+  quantity: Int!
+  price_at_purchase: Float!
+  createdBy: String!
+  createdDt: String
+}
